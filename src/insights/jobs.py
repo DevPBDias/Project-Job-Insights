@@ -5,22 +5,11 @@ import csv
 
 @lru_cache
 def read(path: str) -> List[Dict]:
-    # Referencia: https://docs.python.org/3/library/csv.html
     try:
-        # leitura do csv passando como parametro
-        with open(path, encoding='utf-8') as csvfile:
-            # salvando numa variavel já no formato de dicionario
-            jobs_data = csv.DictReader(csvfile, delimiter=',', quotechar='"')
-            # criando uma lista para receber os dicts e salvando numa variavel
-            jobs_list = []
-            # fazendo um loop passando por todos os dicts
-            #  e dar um 'push' na lista para cada um
-            for row in jobs_data:
-                jobs_list.append(row)
-                # print(jobs_list)
-            return jobs_list
+        with open(path, encoding='utf-8') as csv_file:
+            jobs_data = csv.DictReader(csv_file, delimiter=',', quotechar='"')
+            return [jobs for jobs in jobs_data]
     except FileNotFoundError:
-        # Referencia: https://docs.python.org/3/library/exceptions.html
         raise FileNotFoundError(f'File not found: {path}')
 
 
