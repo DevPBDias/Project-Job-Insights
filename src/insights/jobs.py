@@ -1,22 +1,27 @@
 from functools import lru_cache
 from typing import List, Dict
+import csv
 
 
 @lru_cache
 def read(path: str) -> List[Dict]:
-    """Reads a file from a given path and returns its contents
-
-    Parameters
-    ----------
-    path : str
-        Full path to file
-
-    Returns
-    -------
-    list
-        List of rows as dicts
-    """
-    raise NotImplementedError
+    # Referencia: https://docs.python.org/3/library/csv.html
+    try:
+        # leitura do csv passando como parametro
+        with open(path, encoding='utf-8') as csvfile:
+            # salvando numa variavel já no formato de dicionario
+            jobs_data = csv.DictReader(csvfile, delimiter=',', quotechar='"')
+            # criando uma lista para receber os dicts e salvando numa variavel
+            jobs_list = []
+            # fazendo um loop passando por todos os dicts
+            #  e dar um 'push' na lista para cada um
+            for row in jobs_data:
+                jobs_list.append(row)
+                # print(jobs_list)
+            return jobs_list
+    except FileNotFoundError:
+        # Referencia: https://docs.python.org/3/library/exceptions.html
+        raise FileNotFoundError(f'File not found: {path}')
 
 
 def get_unique_job_types(path: str) -> List[str]:
