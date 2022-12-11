@@ -6,22 +6,20 @@ import csv
 @lru_cache
 def read(path: str) -> List[Dict]:
     try:
-        with open(path, encoding='utf-8') as csv_file:
-            jobs_data = csv.DictReader(csv_file, delimiter=',', quotechar='"')
+        with open(path, encoding="utf-8") as csv_file:
+            jobs_data = csv.DictReader(csv_file, delimiter=",", quotechar='"')
             return [jobs for jobs in jobs_data]
     except FileNotFoundError:
-        raise FileNotFoundError(f'File not found: {path}')
+        raise FileNotFoundError(f"File not found: {path}")
 
 
 def get_unique_job_types(path: str) -> List[str]:
-    try:
-        jobs_data = read(path)
-        result = []
-        for jobs in jobs_data:
-            jobs.append(jobs['jobs_types'])
-            return result
-    except FileNotFoundError:
-        raise FileNotFoundError(f'File not found: {path}')
+    jobs_data = read(path)
+    result = []
+    for jobs in jobs_data:
+        if jobs["job_type"] not in result:
+            result.append(jobs["job_type"])
+        return result
 
 
 def filter_by_job_type(jobs: List[Dict], job_type: str) -> List[Dict]:
