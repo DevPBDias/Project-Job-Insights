@@ -14,15 +14,13 @@ def read(path: str) -> List[Dict]:
 
 
 def get_unique_job_types(path: str) -> List[str]:
-    try:
-        data = read(path)
-        result = []
-        for jobs in data:
-            if jobs["job_type"] not in result:
+    data = read(path)
+    result = []
+    for jobs in data:
+        if jobs["job_type"] not in result:
+            if jobs["job_type"] != "":
                 result.append(jobs["job_type"])
-        return result
-    except FileNotFoundError:
-        raise FileNotFoundError(f"File not found: {path}")
+    return result
 
 
 def filter_by_job_type(jobs: List[Dict], job_type: str) -> List[Dict]:
