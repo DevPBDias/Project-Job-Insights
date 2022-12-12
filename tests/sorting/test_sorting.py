@@ -19,31 +19,34 @@ jobs = [
 
 
 def min_sort():
-    return sort_by(jobs, "min_salary")
+    sort_by(jobs, "min_salary")
+    return jobs
 
 
 def max_sort():
-    return sort_by(jobs, "max_salary")
+    sort_by(jobs, "max_salary")
+    return jobs
 
 
 def date_sort():
-    return sort_by(jobs, "date_posted")
+    sort_by(jobs, "date_posted")
+    return jobs
 
 
 def test_sort_by_criteria():
     max = max_sort()
     assert max == [
         {
-            "job": "Dev",
-            "date_posted": "2022-12-12",
-            "max_salary": 5000,
-            "min_salary": 3500,
-        },
-        {
             "job": "Eng",
             "date_posted": "2022-12-11",
             "max_salary": 8000,
             "min_salary": 2500,
+        },
+        {
+            "job": "Dev",
+            "date_posted": "2022-12-12",
+            "max_salary": 5000,
+            "min_salary": 3500,
         },
     ]
 
