@@ -46,9 +46,15 @@ def filter_by_salary_range(
 ) -> List[Dict]:
     result = []
     try:
+        # navega pela lista
         for job in jobs:
+            # verifica se o salario é esta entre min e max, e se é inteiro
             if int(job["min_salary"]) <= int(salary) <= int(job["max_salary"]):
+                # após satisfazer salva o salario na variavel job
+                # e add ela na lista result
                 result.append(job)
         raise ValueError("Error")
+        # se nao satisfazer lança msg de erro
     finally:
         return result
+        # dps finaliza retornando a lista
