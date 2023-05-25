@@ -1,5 +1,7 @@
 ## Project-Job-Insights
 
+- Projeto do módulo de Ciência da Computação da Trybe.
+
 Foi implementado análises a partir de um conjunto de dados sobre empregos. As implementações foram incorporadas a um aplicativo Web desenvolvido com Flask . E também foi e escrito testes para a implementação de uma análise de dados.
 
 Os dados foram extraídos do site Glassdoor e obtidos através do Kaggle, uma plataforma disponiblizando conjuntos de dados para cientistas de dados.
